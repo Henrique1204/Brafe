@@ -1,0 +1,93 @@
+// Telas
+$tela-1: 980px;
+$tela-2: 740px;
+
+// Grid
+$colunas: 12;
+$gutter: 20px;
+
+@mixin responsivo($tela: 1) {
+    @if ($tela == 1)
+    {
+        @media only screen and (min-width: $tela-2) and (max-width: $tela-1) {
+            @content;
+        }
+    }
+    @else
+    {
+        @media only screen and (max-width: $tela-2 - 1) {
+            @content;
+        }
+    }
+}
+
+// Container
+.flex {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include responsivo {
+        max-width: $tela-2;
+    }
+
+    @include responsivo(2) {
+        max-width: 300px;
+    }
+}
+
+.linha {
+    margin-left: $gutter / -2;
+    margin-right: $gutter / -2;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include responsivo(2) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.linha-mb {
+    margin-left: $gutter / -2;
+    margin-right: $gutter / -2;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@for $i from 1 through $colunas
+{
+    $largura: ($i / $colunas * 100 + "%");
+    $valor-final: calc(#{$largura} - #{$gutter});
+
+    .flex-item-#{$i} {
+        max-width: $valor-final;
+        flex: 0 0 $valor-final;
+    } 
+}
+
+[class*="flex-item-"] {
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+    align-self: flex-start;
+
+    @include responsivo(2) {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        flex: 0 0 100%;
+    }
+}
+
+.flex-item-mb-6 {
+    max-width: calc(50% - #{$gutter});
+    flex: 0 0 calc(50% - #{$gutter});
+
+    @include responsivo(2) {
+        max-width: calc(50% - #{$gutter});
+        margin-left: $gutter / 2;
+        margin-right: $gutter / 2;
+        flex: 0 0 calc(50% - #{$gutter});
+    }
+}

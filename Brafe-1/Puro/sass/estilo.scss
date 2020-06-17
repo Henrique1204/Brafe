@@ -1,0 +1,488 @@
+// Cores
+$preto: #252525;
+$branco: #fff;
+$bege: #E7E4D8;
+$bege-escuro: #D6D3C8;
+
+// Telas
+$tela-1: 980px;
+$tela-2: 740px;
+
+// Mixin
+@mixin responsivo($tamanho: false) {
+    @if ($tamanho == 1)
+    {
+        @media only screen and (min-width: $tela-2) and (max-width: $tela-1) {
+            @content;
+        }
+    }
+    @else if ($tamanho == 2) {
+        @media only screen and (max-width: $tela-2 - 1) {
+            @content;
+        }
+    }
+}
+
+@mixin clear-fix {
+   &::after, &::before {
+    content: "";
+    display: table;
+    clear: both;
+   }
+}
+
+@mixin container {
+    max-width: 960px;
+    margin: 0 auto;
+
+    @include clear-fix;
+
+    @include responsivo(1) {
+        max-width: 720px;
+    }
+
+    @include responsivo(2) {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@mixin sombra($sombra...) {
+    -webkit-box-shadow: $sombra;
+    -moz-box-shadow: $sombra;
+    box-shadow: $sombra;
+}
+
+@mixin efeito-produto($cor) {
+    &::before {
+        content: "";
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 20px auto;
+        background-color: $cor;
+        display: block;
+
+        @include sombra(0 0 0 5px $bege, 0 0 0 15px $cor);
+    }
+}
+
+@mixin border-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+// Funções
+@function em($pixel, $padrao_navegador: 16)
+{
+    @return ($pixel / $padrao_navegador) * 1em;
+}
+
+// Reset
+body, h1, h2, h3, p, ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: Georgia, serif;
+    color: $preto;
+}
+
+.quebra_linha {
+    display: block;
+}
+
+*, *::after, *::before {
+    @include border-box;
+} 
+
+// Menu
+.menu {
+    padding: 20px 0;
+    background-color: $preto;
+
+    .menu-container {
+        @include container;
+
+        @include responsivo(2) {
+            max-width: none;
+            text-align: center;
+        }
+    }
+    
+    .logo {
+        margin-left: 10px;
+        display: block;
+        float: left;
+
+        @include responsivo(2) {
+            margin-left: auto;
+            margin-right: auto;
+            float: none;
+        }
+    }
+
+    .menu-nav {
+        margin-right: 10px;
+        float: right;
+
+        @include responsivo(2) {
+            float: none;
+            clear: both;
+        }
+    
+        li {
+            display: inline-block;
+        }
+
+        a {
+            padding: 10px;
+            font-size: em(18);
+            text-decoration: none;
+            color: $branco;
+            display: block;
+        }
+    }
+}
+
+// Introdução
+.intro {
+    padding: 150px 0;
+    text-align: center;
+    color: $branco;
+    background: url("../../img/bg-intro.jpg") no-repeat center center;
+    background-size: cover;
+
+    @include responsivo(2) {
+        padding: 40px 0;
+    }
+
+    h1 {
+        font-size: em(48);
+        text-transform: uppercase;
+
+        @include responsivo(2) {
+            font-size: em(36);
+        }
+
+        &::after {
+            content: "";
+            width: 20px;
+            height: 4px;
+            margin: 10px auto;
+            background-color: currentColor;
+            display: block;
+        }
+    }
+
+    p {
+        font-size: em(18);
+        font-style: italic;
+    }
+}
+
+// Sobre
+.sobre {
+    padding: 60px 0;
+
+    h2 {
+        margin-bottom: 60px;
+        font-size: em(36);
+        text-align: center;
+
+        @include responsivo(1) {
+            margin-bottom: 30px;
+        }
+    }
+
+    .sobre-container {
+        @include container;
+    }
+
+    .sobre-item {
+        width: 460px;
+        margin: 0 10px;
+        float: left;
+
+        @include responsivo(1) {
+            width: 340px;
+        }
+
+        @include responsivo(2) {
+            width: 300px;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        h3 {
+            width: 220px;
+            padding: 5px 0 10px;
+            font-size: em(36);
+            font-style: italic;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1em;
+            color: $branco;
+            background-color: $preto;
+            position: relative;
+            bottom: 25px;
+        }
+    }
+
+    & > p {
+        max-width: 460px;
+        margin: 20px auto;
+        font-size: em(18);
+        font-style: italic;
+        line-height: 1.4;
+        text-align: center;
+    }
+}
+
+// Produtos
+.produtos {
+    padding: 60px 0;
+    border-top: 3px solid $bege-escuro;
+    border-bottom: 3px solid $bege-escuro;
+    background-color: $bege;
+
+    .produtos-container {
+        @include container;
+    }
+
+    .produtos-item {
+        width: 300px;
+        margin: 0 10px 20px;
+        float: left;
+
+        @include responsivo(1) {
+            width: 220px;
+        }
+
+        @include responsivo(2) {
+            margin: 0 auto 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: em(36);
+            text-align: center;
+        }
+
+        .produtos-paulista {
+            @include efeito-produto(#492901);
+        }
+
+        .produtos-carioca {
+            @include efeito-produto(#C17139);
+        }
+
+        .produtos-mineiro {
+            @include efeito-produto(#D7A54D);
+        }
+
+        p {
+            font-size: em(14);
+            line-height: 1.4;
+        }
+    }
+
+    .produtos-btn {
+        width: 180px;
+        padding: 15px 0;
+        border: 3px solid;
+        margin: 20px auto 0;
+        font-size: em(18);
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center; 
+        text-decoration: none;
+        color: $preto;
+        display: block;
+    }
+}
+
+// Locais
+.locais {
+    padding: 20px 0;
+    @include container;
+
+    .locais-item {
+        margin: 60px auto;
+        clear: both;
+        @include clear-fix;
+    
+        @include responsivo(1) {
+            width: 340px;
+        }
+
+        @include responsivo(2) {
+            width: 300px;
+        }
+
+        img {
+            width: 460px;
+            margin: 0 10px;
+            display: block;
+            float: left;
+
+            @include responsivo(1) {
+                width: 340px;
+            }
+
+            @include responsivo(2) {
+                width: 300px;
+            }
+        }
+
+        div {
+            width: 460px;
+            margin: 0 10px;
+            float: left;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: em(36);
+        }
+
+        p {
+            max-width: 320px;
+            margin-bottom: 40px;
+            font-size: em(18);
+            line-height: 1.4em;
+        }
+
+        a {
+            padding: 10px 20px;
+            border: 3px solid;
+            font-size: em(18);
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $preto;
+        }
+    }
+}
+
+// Assine
+.assine {
+    padding: 30px 0;
+    background-color: $bege;
+
+    .assine-container {
+        @include container;
+
+        .assine-info {
+            width: 460px;
+            margin: 0 10px;
+            float: left;
+
+            @include responsivo(1) {
+                width: 340px;
+            }
+
+            @include responsivo(2) {
+                width: 300px;
+                margin: 0px 0px 10px;
+            }
+
+            h2  {
+                font-size: em(36);
+            }
+
+            p {
+                font-size: em(24);
+                font-style: italic;
+            }
+        }
+        
+        form {
+            width: 460px;
+            margin: 10px 10px 0;
+            float: left;
+
+            @include responsivo(1) {
+                width: 340px;
+            }
+
+            @include responsivo(2) {
+                width: 300px;
+                margin: 10px 0px 0px;
+            }
+
+            label {
+                display: none;
+            }
+
+            input {
+                width: 320px;
+                padding: 10px;
+                border: 3px solid $preto;
+                font-family: Georgia, serif;
+                font-size: em(24);
+                font-style: italic;
+                background-color: transparent;
+                float: left;
+
+                @include responsivo(1) {
+                    width: 340px;
+                }
+
+                @include responsivo(2) {
+                    width: 300px;
+                }
+            }
+
+            button {
+                width: 140px;
+                padding: 13px 0;
+                border: none;
+                font-family: Georgia, serif;
+                font-size: em(24);
+                text-transform: uppercase;
+                color: $branco;
+                background-color: $preto;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// Footer
+.footer {
+    padding: 40px 0;
+    background-color: $bege-escuro;
+
+    .footer-container {
+        @include container;
+
+        p {
+            margin: 0 10px;
+            font-size: em(18);
+            line-height: 1.4em;
+            float: left;
+
+            @include responsivo(2) {
+                margin: 10px 0;
+                float: none;
+            }
+        }
+
+        img {
+            margin: 0 10px;
+            display: block;
+            float: right;
+
+            @include responsivo(2) {
+                margin: 10px auto;
+                float: none;
+            }
+        }
+    }
+}

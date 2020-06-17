@@ -1,0 +1,37 @@
+// Cores
+$preto: #252525;
+$cinza: #D6D3C8;
+$cinza-claro: #E7E4D8;
+$cinza-escuro: #C0BEB4;
+
+// Fonte
+$fonte: Georgia, serif;
+
+// Mixin
+@mixin borda($lados: 2, $cor: $cinza) {
+    @if ($lados == 2)
+    {
+        border-top: 3px solid $cor;
+        border-bottom: 3px solid $cor;
+    }
+    @else
+    {
+        border: 3px solid $cinza;
+    }
+}
+
+//Funções
+@function em($pixel, $em: 16) {
+    @return ($pixel / 16 * 1em);
+}
+
+@function efeito-filtro($quantidade) {
+    $sombra: 20px 0 0 0 currentColor;
+
+    @for $i from 2 through ($quantidade - 1)
+    {
+        $sombra: $sombra, ( $i * 20px) 0 0 0 currentColor;
+    }
+
+    @return $sombra;
+}

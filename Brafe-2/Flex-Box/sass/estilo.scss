@@ -1,0 +1,201 @@
+@import '_flex.scss';
+@import 'variaveis-mixins-funcoes';
+
+// Reset
+body {
+    font-family: $fonte;
+    color: $preto;
+}
+
+body, p, h1, h2, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+// Menu
+.header-info {
+    padding: 5px 0;
+    font-size: em(14);
+    text-align: center;
+    background-color: $cinza;
+}
+
+.header-logo img{
+    margin: 40px auto;
+}
+
+.header-menu {
+    padding: 20px 0;
+    margin-bottom: 40px;
+    text-align: center;
+    @include borda;
+
+    ul>li:first-child a {
+        &::before {
+            content: "";
+        }
+    }
+
+    li {
+        display: inline-block;
+
+        a {
+            padding: 5px 10px;
+            font-size: em(18);
+            text-decoration: none;
+            color: $preto;
+            display: block;
+
+            &::before {
+                content: "•";
+                padding-right: 10px;
+            }
+        }
+    }
+}
+
+// Conteúdo
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+
+    
+    @include responsivo {
+        max-width: $tela-2;
+    }
+
+    @include responsivo(2) {
+        max-width: 300px;
+    }
+
+    &::after, &::before {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Filtro
+.filtro {
+    padding: 20px;
+    margin: 0 10px;
+    background-color: $cinza-claro;
+    @include borda(4);
+
+    @include responsivo(2) {
+        display: none;
+    }
+
+    h2 {
+        font-size: em(18);
+        padding: 10px 0;
+    }
+
+    ul {
+        @include borda(2, $cinza-escuro);
+    }
+
+    li {
+        font-size: em(18);
+        font-style: italic;
+        line-height: 2;
+
+        &::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            margin-top: 5px;
+            display: block;
+            float: right;
+            @include borda(4, $cinza-escuro)
+        }
+    }
+
+    .sabor {
+        overflow: hidden;
+
+        span {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            text-indent: -100px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .sabor-3 {
+            color: #492901;
+            background-color: currentColor;
+            box-shadow: efeito-filtro(3);
+        }
+
+        span.sabor-4 {
+            color: #C17139;
+            background-color: currentColor;
+            box-shadow: efeito-filtro(4);
+        }
+
+        .sabor-5 {
+            color: #D7A54D;
+            background-color: currentColor;
+            box-shadow: efeito-filtro(5);
+        }
+    }
+}
+
+// Produtos
+.produtos {
+    h1 {
+        font-size: em(48);
+        font-weight: normal;
+    }
+
+    li {
+        img {
+            border: 3px solid #fff;
+            margin: 40px 3px 0;
+            -webkit-box-shadow: 0 0 0 3px $preto;
+            -moz-box-shadow: 0 0 0 3px $preto;
+            box-shadow: 0 0 0 3px $preto;
+        }
+
+        span {
+            padding: 10px;
+            font-size: em(14);
+            font-weight: bold;
+            background-color: $cinza-claro;
+            position: relative;
+            bottom: 15px;
+        }
+
+        h2 {
+            font-size: em(14);
+            font-weight: normal;
+        }
+    }
+}
+
+// Footer
+.footer {
+    padding: 60px 0;
+    margin-top: 80px;
+    font-size: em(18);
+    text-align: center;
+    line-height: 1.4em;
+    background-color: $cinza-claro;
+}

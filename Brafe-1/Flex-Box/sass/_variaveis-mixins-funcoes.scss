@@ -1,0 +1,56 @@
+// Cores
+$preto: #252525;
+$branco: #fff;
+$bege: #E7E4D8;
+$bege-escuro: #D6D3C8;
+
+// Telas
+$tela-1: 980px;
+$tela-2: 740px;
+
+// Mixin
+@mixin responsivo($tamanho: false) {
+    @if ($tamanho == 1)
+    {
+        @media only screen and (min-width: $tela-2) and (max-width: $tela-1) {
+            @content;
+        }
+    }
+    @else if ($tamanho == 2) {
+        @media only screen and (max-width: $tela-2 - 1) {
+            @content;
+        }
+    }
+}
+
+@mixin sombra($sombra...) {
+    -webkit-box-shadow: $sombra;
+    -moz-box-shadow: $sombra;
+    box-shadow: $sombra;
+}
+
+@mixin efeito-produto($cor) {
+    &::before {
+        content: "";
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        background-color: $cor;
+        display: block;
+        
+        @include sombra(0 0 0 5px $bege, 0 0 0 10px $cor);
+    }
+}
+
+@mixin border-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+// Funções
+@function em($pixel, $padrao_navegador: 16)
+{
+    @return ($pixel / $padrao_navegador) * 1em;
+}

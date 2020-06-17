@@ -1,0 +1,287 @@
+@import '_grid.scss';
+@import '_variaveis-mixins-funcoes.scss';
+
+// Reset
+body, h1, h2, h3, p, ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: Georgia, serif;
+    color: $preto;
+}
+
+.quebra_linha {
+    display: block;
+}
+
+*, *::after, *::before {
+    @include border-box;
+}
+img {
+    max-width: 100%;
+    display: block;
+}
+
+// Menu
+.menu {
+    padding: 15px 0;
+    background-color: $preto;
+
+    .container {
+        @include responsivo(2) {
+            max-width: none;
+        }
+
+        img{
+            @include responsivo(2) {
+                margin: 0 auto;
+            }
+        }
+
+        ul {
+            float: right;
+            
+            @include responsivo(2) {
+                text-align: center;
+                float: none;
+            }
+        }
+        
+        li {
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        a {
+            padding: 10px;
+            margin-left: 10px;
+            font-size: em(18);
+            text-decoration: none;
+            color: $branco;
+            display: block;
+        }
+    }
+}
+
+// Introdução
+.intro {
+    padding: 150px 0;
+    text-align: center;
+    color: $branco;
+    background: url("../../img/bg-intro.jpg") no-repeat center center;
+    background-size: cover;
+
+    @include responsivo(2) {
+        padding: 60px 0;
+    }
+    
+    h1 {
+        font-size: em(48);
+        text-transform: uppercase;
+
+        @include responsivo(2) {
+            font-size: em(36);
+        }
+
+        &::after {
+            content: "";
+            width: 20px;
+            height: 4px;
+            margin: 10px auto;
+            background-color: currentColor;
+            display: block;
+        }
+    }
+    
+    p {
+        font-size: em(18);
+        font-style: italic;
+    }
+}
+
+// Sobre
+.sobre {
+    padding: 60px 0;
+
+    h2 {
+        margin-bottom: 60px;
+        font-size: em(36);
+        text-align: center;
+    }
+    
+    .sobre-item {
+        
+        h3 {
+            width: 220px;
+            padding: 5px 0 10px;
+            font-size: em(36);
+            font-style: italic;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1em;
+            color: $branco;
+            background-color: $preto;
+            position: relative;
+            bottom: 25px;
+        }
+    }
+    
+    & > p {
+        max-width: 460px;
+        margin: 0 auto;
+        font-size: em(18);
+        font-style: italic;
+        line-height: 1.4;
+        text-align: center;
+    }
+}
+
+// Produtos
+.produtos {
+    padding: 60px 0;
+    border-top: 3px solid $bege-escuro;
+    border-bottom: 3px solid $bege-escuro;
+    background-color: $bege;
+    
+    .produtos-item {
+        margin-bottom: 20px!important;
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: em(36);
+            text-align: center;
+        }
+        
+        .produtos-paulista {
+            @include efeito-produto(#492901);
+        }
+        
+        .produtos-carioca {
+            @include efeito-produto(#C17139);
+        }
+        
+        .produtos-mineiro {
+            @include efeito-produto(#D7A54D);
+        }
+        
+        p {
+            font-size: em(14);
+            line-height: 1.4;
+        }
+    }
+    
+    .produtos-btn {
+        width: 180px;
+        padding: 15px 0;
+        border: 3px solid;
+        margin: 20px auto 0;
+        font-size: em(18);
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center; 
+        text-decoration: none;
+        color: $preto;
+        display: block;
+    }
+}
+
+// Locais
+.locais {
+    padding: 60px 0;
+
+    .locais-item {
+        margin-bottom: 40px;
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: em(36);
+        }
+        
+        p {
+            max-width: 320px;
+            margin-bottom: 40px;
+            font-size: em(18);
+            line-height: 1.4em;
+        }
+        
+        a {
+            padding: 10px 20px;
+            border: 3px solid;
+            font-size: em(18);
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $preto;
+        }
+    }
+}
+
+// Assine
+.assine {
+    padding: 30px 0;
+    background-color: $bege;
+    
+    .assine-info {
+        h2  {
+            font-size: em(36);
+        }
+        
+        p {
+            font-size: em(24);
+            font-style: italic;
+        }
+    }
+    
+    form {
+        label {
+            display: none;
+        }
+        
+        input {
+            width: calc(100% - 140px);
+            padding: 10px;
+            border: 3px solid $preto;
+            font-family: Georgia, serif;
+            font-size: em(24);
+            font-style: italic;
+            background-color: transparent;
+            float: left;
+
+            @include responsivo(2) {
+                width: 100%;
+                margin-top: 20px;
+                float: none;
+            }
+        }
+        
+        button {
+            width: 140px;
+            padding: 13px 0;
+            border: none;
+            font-family: Georgia, serif;
+            font-size: em(24);
+            text-transform: uppercase;
+            color: $branco;
+            background-color: $preto;
+            cursor: pointer;
+        }
+    }    
+}
+
+// Footer
+.footer {
+    padding: 40px 0;
+    background-color: $bege-escuro;
+
+    p {
+        font-size: em(18);
+        line-height: 1.4em;
+    }
+
+    img {
+        @include responsivo(2) {
+            margin: 20px auto 0;
+        }
+    }
+}
