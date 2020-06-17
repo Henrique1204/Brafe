@@ -1,0 +1,258 @@
+@import '_variavies-mixins-funcoes.scss';
+
+// Reset
+body, p, h1, h2, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+// Geral
+body {
+    font-family: $fonte-1;
+    color: $preto;
+    background-color: $cinza-claro;
+}
+
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+// Header
+.header {
+    padding: 20px;
+    background-color: $cinza;
+    display: flex;
+    
+    @include responsivo(2) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-logo {
+        flex-grow: 1;
+    }
+    
+    .header-menu {
+        @include responsivo(2) {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            a {
+                padding: 0 10px;
+                font-size: em(18);
+                color: $preto;
+            }
+        }
+
+        ul li:first-child a{
+            padding-left: 0;
+        }
+
+    }
+}
+
+.main-container {
+    display: flex;
+
+    @include responsivo(2) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+// side-nav
+.side-nav {
+    max-width: 300px;
+    background-color: $preto;
+    float: 1;
+
+    @include responsivo(2) {
+        max-width: 100%;
+        margin: 20px 0;
+        background: none;
+    }
+
+    ul {
+        @include responsivo(2) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    li {
+        @include responsivo(2) {
+            margin: 0 10px;
+        }
+    }
+
+    li a {
+        padding: 20px;
+        border-bottom: 2px solid $cinza-escuro;
+        font-size: em(18);
+        color: $branco;
+        display: block;
+
+        @include responsivo(2) {
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            color: $preto;
+            background-color: currentColor;
+            overflow: hidden;
+        }
+
+        &::before {
+            content: "";
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            background-image: url("../../img/icones.png");
+            display: inline-block;
+            position: relative;
+            top: 5px;
+
+            @include responsivo(2) {
+                margin: 0;
+                display: block;
+                top: 0;
+            }
+        }
+    }
+    
+    @include icones-side-nav("contabilidade","produtos","paginas","plugins","formularios","hospedagens");
+}
+
+// Produtos
+.produtos {
+    padding: 20px;
+    flex: 1;
+
+    header {
+        display: flex;
+
+        h1 {
+            margin-right: 10px;
+            font-size: em(36);
+            flex-grow: 1;
+
+            @include responsivo(2) {
+                text-align: center;
+            }
+        }
+        
+        a {
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-family: $fonte-2;
+            font-size: em(18);
+            text-transform: uppercase;
+            text-align: center;
+            color: $cinza-claro;
+            background-color: $cor-btn;
+
+            &:hover {
+                background-color: $preto;
+                transition: 0.5s;
+            }
+
+            @include responsivo(2) {
+                width: 235px;
+                margin: 10px auto;
+                display: block;
+            }
+        }
+    }
+    
+    .produtos-item {
+        margin-top: 20px;
+        background-color: $branco;
+        position: relative;
+        display: flex;
+        
+        @include sombra(0 1px 3px 0 rgba(0,0,0,0.35));
+        @include responsivo(2) {
+            flex-direction: column;
+        }
+        .produtos-img {
+            img {
+                height: 100%;
+            }
+
+            @include responsivo(2) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        a {
+            width: 24px;
+            height: 24px;
+            text-indent: -100px;
+            overflow: hidden;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: url("../../img/edit.svg") no-repeat;
+            
+            &:hover {
+                background: url("../../img/edit-hover.svg") no-repeat;
+            }
+        }
+
+        ul {
+            width: calc(100% - 140px);
+            padding: 0 20px;
+
+            @include responsivo(2) {
+                width: 100%;
+            }
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid $cinza-claro;
+            font-family: $fonte-2;
+            font-size: em(18);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        span {
+            width: 70px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    }
+}
+
+.footer {
+    padding: 60px 0;
+    font-size: em(18);
+    text-align: center;
+    line-height: 1.4em;
+    background-color: $cinza;
+}
