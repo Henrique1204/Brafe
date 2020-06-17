@@ -1,0 +1,56 @@
+// Cores
+$preto: #252525;
+$branco: #FFF;
+$cinza: #D6D3C8;
+$cinza-claro: #E7E4D8;
+$cinza-escuro: #484846;
+$cor-btn: #C73;
+
+// Fonte
+$fonte-1: Georgia, serif;
+$fonte-2: Courier, monospace;
+
+// Telas
+$tela-1: 770px;
+$tela-2: 540px;
+
+// Mixin
+@mixin responsivo($tela: 1) {
+    @if($tela == 1)
+    {
+        @media only screen and (max-width: $tela-1) {
+            @content;
+        }
+    }
+    @else
+    {
+        @media only screen and (max-width: $tela-2 - 1) {
+            @content;
+        }
+    }
+}
+
+@mixin icones-side-nav($valores...) {
+    $lista: $valores;
+    $i: 0;
+    
+    @each $item in $lista
+    {
+        .nav-#{$item}::before {
+            background-position: 0 calc(-24px * #{$i});
+        }
+        
+        $i: $i + 1;
+    }
+}
+
+@mixin sombra($sombra...) {
+    -webkit-box-shadow: $sombra;
+    -moz-box-shadow: $sombra;
+    box-shadow: $sombra;
+}
+
+//Funções
+@function em($pixel, $em: 16) {
+    @return ($pixel / 16 * 1em);
+}
